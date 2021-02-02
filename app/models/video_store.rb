@@ -1,0 +1,3 @@
+class VideoStore < ApplicationRecord
+
+end 

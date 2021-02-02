@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_02_224841) do
+ActiveRecord::Schema.define(version: 2021_02_02_232006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2021_02_02_224841) do
     t.boolean "televised"
     t.string "stadium_name"
     t.integer "attendance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "video_stores", force: :cascade do |t|
+    t.string "name"
+    t.integer "rank"
+    t.boolean "flagship_store"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
