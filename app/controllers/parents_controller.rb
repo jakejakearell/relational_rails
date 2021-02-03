@@ -1,5 +1,6 @@
 class ParentsController < ApplicationController
   def index
-
-  end 
+    @games = Game.all
+    @video_stores = VideoStore.all
+  end
 end
