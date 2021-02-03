@@ -1,1 +1,13 @@
 <h1>Parents</h1>
+
+<h2>Game</h2>
+
+<% @games.each do |game| %>
+  <h3><%= game.stadium_name %></h3>
+<% end %>
+
+<h2>Video Store</h2>
+
+<% @video_stores.each do |store| %>
+  <h3><%= store.name %></h3>
+<% end %>
