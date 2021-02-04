@@ -6,7 +6,7 @@
 <p><%= @game.created_at %></p>
 <p><%= @game.updated_at %></p>
 
-<a href="/parents/<%= @game.id %>/edit" > update game </a>
+<a href="/parents/<%= @game.id %>/edit" > update game and video store</a>
 <br>
 <form action="/parents/<%= @game.id %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -24,4 +24,10 @@
 <p><%= @video_store.flagship_store %></p>
 <p><%= @video_store.created_at %></p>
 <p><%= @video_store.updated_at %></p>
+
+<form action="/parents/<%= @video_store.id %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete"/>
+</form>
 </div>
