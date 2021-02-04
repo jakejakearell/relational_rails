@@ -21,6 +21,14 @@ class ParentsController < ApplicationController
 
     game.save
 
+    video_store = VideoStore.new({
+      name: params[:video_store][:name],
+      rank: params[:video_store][:rank],
+      flagship_store: params[:video_store][:flagship_store]
+      })
+
+    video_store.save
+
     redirect_to '/parents'
   end
 
@@ -39,11 +47,21 @@ class ParentsController < ApplicationController
 
     game.save
 
+    video_store = VideoStore.find(params[:id])
+    video_store.update({
+      name: params[:video_store][:name],
+      rank: params[:video_store][:rank],
+      flagship_store: params[:video_store][:flagship_store]
+      })
+
+    video_store.save
+
     redirect_to "/parents/#{game.id}"
   end
 
   def destroy
     Game.destroy(params[:id])
+    VideoStore.destroy(params[:id])
 
     redirect_to "/parents/"
   end
