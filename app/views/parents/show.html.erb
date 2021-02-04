@@ -1,11 +1,10 @@
-<div>
+<div id="games">
 <h1><%= @game.stadium_name %></h1>
 
 <p><%= @game.attendance %></p>
 <p><%= @game.televised %></p>
 <p><%= @game.created_at %></p>
 <p><%= @game.updated_at %></p>
-</div>
 
 <a href="/parents/<%= @game.id %>/edit" > update game </a>
 <br>
@@ -14,9 +13,10 @@
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="delete"/>
 </form>
+</div>
 
 
-<div>
+<div id="videos">
 
 <h1><%= @video_store.name %></h1>
 
