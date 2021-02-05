@@ -1,3 +1,3 @@
 class VideoStore < ApplicationRecord
-
-end 
+  has_many :movies 
+end
