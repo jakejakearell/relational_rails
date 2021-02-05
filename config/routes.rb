@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   delete '/video_stores/:id', to: "video_stores#destroy"
   get '/players', to: 'players#index'
   get '/movies', to: 'movies#index'
+  get '/games/:id/players', to: "games#show_child"
+  get '/video_stores/:id/movies', to: "video_stores#show_child"
 end
