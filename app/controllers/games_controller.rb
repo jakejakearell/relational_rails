@@ -6,16 +6,43 @@ class GamesController < ApplicationController
   def new
   end
 
+  def show
+    @game = Game.find(params[:id])
+  end
+
   def create
-    video_store = VideoStore.new({
-      name: params[:video_store][:name],
-      rank: params[:video_store][:rank],
-      flagship_store: params[:video_store][:flagship_store]
+    game = Game.new({
+      stadium_name: params[:game][:stadium_name],
+      attendance: params[:game][:attendance],
+      televised: params[:game][:televised]
       })
 
-    video_store.save
+    game.save
 
-    redirect_to '/parents'
+    redirect_to '/games'
+  end
+
+  def edit
+    @game = Game.find(params[:id])
+  end
+
+  def update
+    game = Game.find(params[:id])
+    game.update({
+      stadium_name: params[:game][:stadium_name],
+      attendance: params[:game][:attendance],
+      televised: params[:game][:televised]
+      })
+
+    game.save
+
+    redirect_to "/games/#{game.id}"
+  end
+
+  def destroy
+    Game.destroy(params[:id])
+
+    redirect_to "/games/"
   end
 
 end

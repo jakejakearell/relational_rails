@@ -6,8 +6,8 @@
 <h2>Game</h2>
 
 <% @games.each do |game| %>
-  <h3><%= game.stadium_name %></h3>
+  <h3><a href="/games/<%=game.id%>"> <%= game.stadium_name %> </a></h3>
 <% end %>
 
-<a href="/games/new" >new game </a>
+<a href="/games/new" >new game</a>
 </div>
