@@ -1,0 +1,16 @@
+<div id="games">
+<h1><%= @game.stadium_name %></h1>
+
+<p><%= @game.attendance %></p>
+<p><%= @game.televised %></p>
+<p><%= @game.created_at %></p>
+<p><%= @game.updated_at %></p>
+
+<a href="/games/<%= @game.id %>/edit" > update game</a>
+<br>
+<form action="/games/<%= @game.id %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete"/>
+</form>
+</div>

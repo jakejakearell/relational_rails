@@ -1,0 +1,18 @@
+<div id="videos">
+
+<h1><%= @video_store.name %></h1>
+
+<p><%= @video_store.rank %></p>
+<p><%= @video_store.flagship_store %></p>
+<p><%= @video_store.created_at %></p>
+<p><%= @video_store.updated_at %></p>
+
+<a href="/video_stores/<%= @video_store.id %>/edit" > update store</a>
+<br>
+
+<form action="/video_stores/<%= @video_store.id %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete"/>
+</form>
+</div>

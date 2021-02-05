@@ -1,0 +1,9 @@
+<form action="/games/<%= @game.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p>Edit game</p>
+  <input type='text' name='game[stadium_name]' value="<%= @game.stadium_name %>"><br/>
+  <textarea name='game[attendance]'><%= @game.attendance %></textarea><br/>
+  <textarea type='text' name='game[televised]'><%= @game.televised %></textarea><br/>
+  <input type='submit'/>
+</form>
