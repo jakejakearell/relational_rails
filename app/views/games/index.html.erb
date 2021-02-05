@@ -1,0 +1,13 @@
+<header>
+<h1>Games</h1>
+</header>
+
+<div id="games">
+<h2>Game</h2>
+
+<% @games.each do |game| %>
+  <h3><%= game.stadium_name %></h3>
+<% end %>
+
+<a href="/games/new" >new game </a>
+</div>

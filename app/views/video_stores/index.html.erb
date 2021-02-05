@@ -1,0 +1,13 @@
+<header>
+<h1>Video Stores</h1>
+</header>
+
+<div id="video stores">
+<h2>Game</h2>
+
+<% @video_stores.each do |video_store| %>
+  <h3><%= video_store.name %></h3>
+<% end %>
+
+<a href="/video_stores/new" >video stores </a>
+</div>
