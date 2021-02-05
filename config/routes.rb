@@ -21,4 +21,8 @@ Rails.application.routes.draw do
   get '/video_stores/:id/movies', to: "video_stores#show_child"
   get '/players/:id', to: "players#show"
   get '/movies/:id', to: "movies#show"
+  get '/players/:id/edit', to: "players#edit"
+  patch '/players/:id', to: "players#update"
+  get '/movies/:id/edit', to: "movies#edit"
+  patch '/movies/:id', to: "movies#update"
 end
