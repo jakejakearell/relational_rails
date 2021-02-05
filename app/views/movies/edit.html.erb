@@ -1,0 +1,9 @@
+<form action="/movies/<%= @movie.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p>Edit movie</p>
+  <input type='text' name='movie[name]' value="<%= @movie.name %>"><br/>
+  <textarea name='movie[available]'><%= @movie.available %></textarea><br/>
+  <textarea type='text' name='movie[year_filmed]'><%= @movie.year_filmed %></textarea><br/>
+  <input type='submit'/>
+</form>
