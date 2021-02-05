@@ -10,6 +10,11 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
+  def show_child
+    game = Game.find(params[:id])
+    @game_players = game.players
+  end
+
   def create
     game = Game.new({
       stadium_name: params[:game][:stadium_name],

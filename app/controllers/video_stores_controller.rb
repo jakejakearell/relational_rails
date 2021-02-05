@@ -10,6 +10,11 @@ class VideoStoresController < ApplicationController
     @video_store = VideoStore.find(params[:id])
   end
 
+  def show_child
+    video_stores = VideoStore.find(params[:id])
+    @store_movies = video_stores.movies
+  end
+
   def create
     video_store = VideoStore.new({
       name: params[:video_store][:name],
