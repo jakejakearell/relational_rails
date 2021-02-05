@@ -5,4 +5,12 @@
 <p><%= @player.injured %></p>
 <p><%= @player.created_at %></p>
 <p><%= @player.updated_at %></p>
+
+<a href="/players/<%= @player.id %>/edit" > update player</a>
+<br>
+<form action="/players/<%= @player.id %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete"/>
+</form>
 </div>

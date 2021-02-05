@@ -6,4 +6,21 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
   end
+
+  def edit
+    @player = Player.find(params[:id])
+  end
+
+  def update
+    player = Player.find(params[:id])
+    player.update({
+      position: params[:player][:position],
+      weight: params[:player][:weight],
+      injured: params[:player][:injured]
+      })
+
+    player.save
+
+    redirect_to "/players/#{player.id}"
+  end
 end
