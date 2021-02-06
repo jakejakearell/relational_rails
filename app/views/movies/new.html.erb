@@ -1,0 +1,8 @@
+<form action="/video_stores/<%=@store.id%>/movies/new" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a new movie:</p>
+  <p>year filmed</p><input type='text' name='movie[year_filmed]'/><br/>
+  <p>available</p><input type='text' name='movie[available]'/><br/>
+  <p>name?</p><input type='text' name='movie[name]'/><br/>
+  <input type='submit' value='create new movie'/>
+</form>
