@@ -1,0 +1,8 @@
+<form action="/games/<%=@game.id%>/players/new" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a new player:</p>
+  <p>position</p><input type='text' name='player[position]'/><br/>
+  <p>injured</p><input type='text' name='player[injured]'/><br/>
+  <p>weight?</p><input type='text' name='player[weight]'/><br/>
+  <input type='submit' value='create new player'/>
+</form>
