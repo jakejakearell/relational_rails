@@ -2,8 +2,11 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="PATCH" />
   <p>Edit game</p>
-  <input type='text' name='game[stadium_name]' value="<%= @game.stadium_name %>"><br/>
-  <textarea name='game[attendance]'><%= @game.attendance %></textarea><br/>
-  <textarea type='text' name='game[televised]'><%= @game.televised %></textarea><br/>
+  <label for "stadium_name">stadium name:</label>
+  <input type='text' id="stadium_name" name='game[stadium_name]' value="<%= @game.stadium_name %>"><br/>
+  <label for "attendance">attendance:</label>
+  <textarea id="attendance" name='game[attendance]'><%= @game.attendance %></textarea><br/>
+  <label for "televised">televised:</label>
+  <textarea id="televised" type='text' name='game[televised]'><%= @game.televised %></textarea><br/>
   <input type='submit'/>
 </form>
