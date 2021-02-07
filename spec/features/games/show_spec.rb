@@ -22,7 +22,6 @@ RSpec.describe "games show page" do
 
     visit "/games/#{game.id}"
 
-
     expect(page).to have_link 'update game', href: "/games/#{game.id}/edit"
   end
 
@@ -35,5 +34,18 @@ RSpec.describe "games show page" do
     visit "/games/#{game.id}"
 
     expect(page).to have_button 'delete'
+  end
+
+  it "can delete game" do
+    game = Game.create!(televised: false,
+      stadium_name: "Wriggley",
+      attendance: 20000)
+
+    visit "/games/#{game.id}"
+
+    click_button
+
+    expect(page).to_not have_content(game.stadium_name)
+    expect(current_path).to eq('/games/')
   end
 end
