@@ -34,28 +34,14 @@ RSpec.describe "As a vistor" do
 
   describe "I visit '/games'" do
     it "then I see a link to create a new game record" do
-
       visit "games/"
 
       expect(page).to have_link 'new game', href: "/games/new"
-    end
-  end
-
-  describe "when I click 'new game'" do
-    it "takes me to games/new" do
-
-      visit "games/"
 
       click_link
 
       expect(current_path).to eq('/games/new')
-    end
-  end
 
-  describe "when I fill out 'new game' form" do
-    it "takes me to games index with updated record" do
-
-      visit "/games/new"
       fill_in 'game[stadium_name]', with: 'Mead High School'
       fill_in 'game[attendance]', with: 500
       fill_in 'game[televised]', with: true
@@ -66,6 +52,7 @@ RSpec.describe "As a vistor" do
       expect(current_path).to eq('/games')
     end
   end
+
 
   describe "when I visit a game show page" do
     it "then I see a link to update the game" do
@@ -80,17 +67,6 @@ RSpec.describe "As a vistor" do
       click_link
 
       expect(current_path).to eq("/games/#{game_1.id}/edit")
-    end
-  end
-
-  describe "when I visit a games edit page" do
-    it "can update a game and send you back to show page" do
-
-      game_1 = Game.create!(televised: false,
-        stadium_name: "Wriggley",
-        attendance: 20000)
-
-      visit "/games/#{game_1.id}/edit"
 
       fill_in 'game[stadium_name]', with: 'MetLife'
       fill_in 'game[attendance]', with: 500
