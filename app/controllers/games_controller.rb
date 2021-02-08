@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all
+    @games = Game.order_by_created_date
   end
 
   def new
@@ -8,11 +8,12 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @game_players = Game.number_of_players
   end
 
   def show_child
     game = Game.find(params[:id])
-    @game_players = game.players
+    @game_players = Player.injured?(game)
   end
 
   def create
