@@ -69,19 +69,26 @@ RSpec.describe "As a vistor" do
     end
   end
 
-  describe "I visit player show page" do
-    it "then I see the player with that id and its attributes" do
+  describe "I visit movie show page" do
+    it "then I see the movie with that id and its attributes" do
 
-      game_1 = Game.create!(televised: false,
-        stadium_name: "Wriggley",
-        attendance: 20000)
-      player_1 = game_1.players.create!(position: "QB", weight: 210, injured: false)
+      # game_1 = Game.create!(televised: false,
+      #   stadium_name: "Wriggley",
+      #   attendance: 20000)
+      # player_1 = game_1.players.create!(position: "QB", weight: 210, injured: false)
 
-      visit "players/#{player_1.id}"
 
-      expect(page).to have_content(player_1.position)
-      expect(page).to have_content(player_1.injured)
-      expect(page).to have_content(player_1.weight)
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
+
+      movie = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
+
+      visit "movies/#{movie.id}"
+
+      expect(page).to have_content(movie.name)
+      expect(page).to have_content(movie.available)
+      expect(page).to have_content(movie.year_filmed)
     end
   end
 
