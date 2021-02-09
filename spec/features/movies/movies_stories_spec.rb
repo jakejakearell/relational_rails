@@ -59,8 +59,6 @@ RSpec.describe "As a vistor" do
       expect(page).to have_content(movie_2.available)
       expect(page).to have_content(movie_2.year_filmed)
 
-      save_and_open_page
-
       expect(page).to_not have_content(movie_3.name)
       expect(page).to_not have_content(movie_3.year_filmed)
 
@@ -121,8 +119,6 @@ RSpec.describe "As a vistor" do
   describe "when I visit a movie show page" do
     it "can delete a movie and send me back to movies index" do
 
-
-
       video_store = VideoStore.create!(name: "Video 1",
                             rank: 1,
                             flagship_store: true)
@@ -140,33 +136,41 @@ RSpec.describe "As a vistor" do
     end
   end
 
-  describe "I visit a games player index page" do
-    it "then I see a link to create a new player " do
-      game_1 = Game.create!(televised: false,
-        stadium_name: "Wriggley",
-        attendance: 20000)
-      player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
-      player_2 = game_1.players.create!(position: "RB", weight: 180, injured: true)
+  describe "I visit a video store movies index page" do
+    it "then I see a link to create a new movie" do
+      # game_1 = Game.create!(televised: false,
+      #   stadium_name: "Wriggley",
+      #   attendance: 20000)
+      # player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
+      # player_2 = game_1.players.create!(position: "RB", weight: 180, injured: true)
 
-      visit "/games/#{game_1.id}/players/"
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
 
-      expect(page).to have_link 'new player', href: "/games/#{game_1.id}/players/new"
+      movie_1 = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
+      movie_2 = video_store.movies.create!(name:"Rambo", available: false, year_filmed: 1989)
+
+
+      visit "/video_stores/#{video_store.id}/movies/"
+
+      expect(page).to have_link 'new movie', href: "/video_stores/#{video_store.id}/movies/new"
 
       click_link
 
-      expect(current_path).to eq("/games/#{game_1.id}/players/new")
+      expect(current_path).to eq("/video_stores/#{video_store.id}/movies/new")
 
-      fill_in 'player[position]', with: 'pitcher'
-      fill_in 'player[weight]', with: 200
-      fill_in 'player[injured]', with: true
+      fill_in 'movie[name]', with: 'Die Hard'
+      fill_in 'movie[available]', with: false
+      fill_in 'movie[year_filmed]', with: 1990
 
       click_button
 
-      expect(page).to have_content("pitcher")
-      expect(page).to have_content(200)
-      expect(page).to have_content(true)
+      expect(page).to have_content("Die Hard")
+      expect(page).to have_content(false)
+      expect(page).to have_content(1990)
 
-      expect(current_path).to eq("/games/#{game_1.id}/players")
+      expect(current_path).to eq("/video_stores/#{video_store.id}/movies")
     end
   end
 end
