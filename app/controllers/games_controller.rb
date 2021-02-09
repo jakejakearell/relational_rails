@@ -12,8 +12,15 @@ class GamesController < ApplicationController
   end
 
   def show_child
-    game = Game.find(params[:id])
-    @game_players = Player.injured?(game)
+    @game = Game.find(params[:id])
+    @game_players = Player.injured?(@game)
+  end
+
+  def new_page
+    @game = Game.find(params[:id])
+    @player_weight = Player.weight?(params)
+    render :show_child
+    # redirect_to "/games/#{@player_weight[0].game_id}/players"
   end
 
   def create
