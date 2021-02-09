@@ -6,6 +6,6 @@ class Player < ApplicationRecord
   end
 
   def self.weight?(params)
-    Player.where("weight > ?", params[:id])
+    Player.where("game_id = ? AND weight > ?", params[:id], params[:query] )
   end
 end
