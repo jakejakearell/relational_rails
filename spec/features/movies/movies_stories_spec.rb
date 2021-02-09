@@ -97,13 +97,6 @@ RSpec.describe "As a vistor" do
 
       visit "movies/#{movie.id}"
 
-      # game_1 = Game.create!(televised: false,
-      #   stadium_name: "Wriggley",
-      #   attendance: 20000)
-      # player_1 = game_1.players.create!(position: "QB", weight: 210, injured: false)
-      #
-      # visit "players/#{player_1.id}"
-
       expect(page).to have_link 'update movie', href: "/movies/#{movie.id}/edit"
 
       click_link
@@ -125,22 +118,25 @@ RSpec.describe "As a vistor" do
   end
 
 
-  describe "when I visit a player show page" do
-    it "can delete a player and send me back to player index" do
+  describe "when I visit a movie show page" do
+    it "can delete a movie and send me back to movies index" do
 
-      game_1 = Game.create!(televised: false,
-                            stadium_name: "Wriggley",
-                            attendance: 20000)
-      player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
-      player_2 = game_1.players.create!(position: "RB", weight: 180, injured: true)
 
-      visit "/players/#{player_1.id}"
+
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
+
+      movie_1 = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
+      movie_2 = video_store.movies.create!(name:"Rambo", available: false, year_filmed: 1989)
+
+      visit "/movies/#{movie_1.id}"
 
       click_button
 
-      expect(page).to_not have_content(player_1.position)
-      expect(page).to have_content(player_2.position)
-      expect(current_path).to eq('/players/')
+      expect(page).to_not have_content(movie_1.name)
+      expect(page).to have_content(movie_2.name)
+      expect(current_path).to eq('/movies/')
     end
   end
 
