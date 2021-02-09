@@ -41,7 +41,7 @@ class VideoStoresController < ApplicationController
 
     video_store.save
 
-    redirect_to "/video_store/#{video_store.id}"
+    redirect_to "/video_stores/#{video_store.id}"
   end
 
   def destroy
