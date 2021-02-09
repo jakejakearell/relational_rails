@@ -72,12 +72,6 @@ RSpec.describe "As a vistor" do
   describe "I visit movie show page" do
     it "then I see the movie with that id and its attributes" do
 
-      # game_1 = Game.create!(televised: false,
-      #   stadium_name: "Wriggley",
-      #   attendance: 20000)
-      # player_1 = game_1.players.create!(position: "QB", weight: 210, injured: false)
-
-
       video_store = VideoStore.create!(name: "Video 1",
                             rank: 1,
                             flagship_store: true)
@@ -92,33 +86,41 @@ RSpec.describe "As a vistor" do
     end
   end
 
-  describe "when I visit a player show page" do
-    it "then I see a link to update the player" do
+  describe "when I visit a movie show page" do
+    it "then I see a link to update the movie" do
 
-      game_1 = Game.create!(televised: false,
-        stadium_name: "Wriggley",
-        attendance: 20000)
-      player_1 = game_1.players.create!(position: "QB", weight: 210, injured: false)
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
 
-      visit "players/#{player_1.id}"
+      movie = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
 
-      expect(page).to have_link 'update player', href: "/players/#{player_1.id}/edit"
+      visit "movies/#{movie.id}"
+
+      # game_1 = Game.create!(televised: false,
+      #   stadium_name: "Wriggley",
+      #   attendance: 20000)
+      # player_1 = game_1.players.create!(position: "QB", weight: 210, injured: false)
+      #
+      # visit "players/#{player_1.id}"
+
+      expect(page).to have_link 'update movie', href: "/movies/#{movie.id}/edit"
 
       click_link
 
-      expect(current_path).to eq("/players/#{player_1.id}/edit")
+      expect(current_path).to eq("/movies/#{movie.id}/edit")
 
-      fill_in 'player[position]', with: 'RB'
-      fill_in 'player[weight]', with: 500
-      fill_in 'player[injured]', with: true
+      fill_in 'movie[name]', with: 'Die Hard'
+      fill_in 'movie[available]', with: false
+      fill_in 'movie[year_filmed]', with: 1990
 
       click_button
 
-      expect(page).to have_content("RB")
-      expect(page).to have_content(500)
-      expect(page).to have_content(true)
+      expect(page).to have_content("Die Hard")
+      expect(page).to have_content(false)
+      expect(page).to have_content(1990)
 
-      expect(current_path).to eq("/players/#{player_1.id}")
+      expect(current_path).to eq("/movies/#{movie.id}")
     end
   end
 
