@@ -35,29 +35,37 @@ RSpec.describe "As a vistor" do
     end
   end
 
-  describe "I visit player show game player index" do
-    it "then I see the players associated with that game and their attributes" do
-      game_1 = Game.create!(televised: false,
-        stadium_name: "Wriggley",
-        attendance: 20000)
-      game_2 = Game.create!(televised: false, stadium_name: "Coors", attendance: 25000)
+  describe "I visit movie show video store movie index" do
+    it "then I see the movies associated with that video store and their attributes" do
+      video_store_1 = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
+      video_store_2 = VideoStore.create!(name: "Video 2",
+                            rank: 2,
+                            flagship_store: false)
 
-      player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
-      player_2 = game_1.players.create!(position: "RB", weight: 180, injured: true)
-      player_3 = game_2.players.create!(position: "DB", weight: 195, injured: true)
+      movie_1 = video_store_1.movies.create!(name:"Rent", available: true, year_filmed: 2001)
+      movie_2 = video_store_1.movies.create!(name:"Rambo", available: false, year_filmed: 1989)
+      movie_3 = video_store_2.movies.create!(name:"Alien", available: false, year_filmed: 1988)
+      movie_4 = video_store_2.movies.create!(name:"Predator", available: true, year_filmed: 1990)
 
-      visit "/games/#{game_1.id}/players/"
+      visit "/video_stores/#{video_store_1.id}/movies/"
 
-      expect(page).to have_content(player_1.position)
-      expect(page).to have_content(player_1.injured)
-      expect(page).to have_content(player_1.weight)
+      expect(page).to have_content(movie_1.name)
+      expect(page).to have_content(movie_1.available)
+      expect(page).to have_content(movie_1.year_filmed)
 
-      expect(page).to have_content(player_2.position)
-      expect(page).to have_content(player_2.injured)
-      expect(page).to have_content(player_2.weight)
+      expect(page).to have_content(movie_2.name)
+      expect(page).to have_content(movie_2.available)
+      expect(page).to have_content(movie_2.year_filmed)
 
-      expect(page).to_not have_content(player_3.position)
-      expect(page).to_not have_content(player_3.weight)
+      save_and_open_page
+
+      expect(page).to_not have_content(movie_3.name)
+      expect(page).to_not have_content(movie_3.year_filmed)
+
+      expect(page).to_not have_content(movie_4.name)
+      expect(page).to_not have_content(movie_4.year_filmed)
     end
   end
 
