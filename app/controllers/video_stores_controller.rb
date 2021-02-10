@@ -1,6 +1,6 @@
 class VideoStoresController < ApplicationController
   def index
-    @video_stores = VideoStore.all
+    @video_stores = VideoStore.order_by_created_date
   end
 
   def new
