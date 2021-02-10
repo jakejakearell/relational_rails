@@ -1,7 +1,23 @@
-<% @store_movies.each do |movie| %>
-  <h3><%= movie.name %></h3>
-  <h3><%= movie.available %></h3>
-  <h3><%= movie.year_filmed %></h3>
+<% if @movie_year.nil? %>
+  <% @store_movies.each do |movie| %>
+    <h3><%= movie.name %></h3>
+    <h3><%= movie.available %></h3>
+    <h3><%= movie.year_filmed %></h3>
+  <% end %>
+<% else %>
+  <% @movie_year.each do |movie| %>
+    <h3><%= movie.name %></h3>
+    <h3><%= movie.available %></h3>
+    <h3><%= movie.year_filmed %></h3>
+  <% end %>
 <% end %>
 
-<a href="/video_stores/<%=@store_movies[0].video_store_id%>/movies/new">new movie</a>
+<a href="/video_stores/<%=@video_store.id%>/movies/new" >new movie</a>
+
+<%= form_with url: "/video_stores/#{@video_store.id}/movies/new_view", method: :post, local: true do |form| %>
+  <%= form.label :query, "year filmed:" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<a href="/video_stores/<%=@video_store.id%>/movies/order" >alphabetize movies</a>
