@@ -19,7 +19,7 @@ describe Player, type: :model do
         player_2 = game_1.players.create!(position: "RB", weight: 180, injured: false)
         player_3 = game_2.players.create!(position: "DB", weight: 195, injured: true)
 
-        # params = {id: }
+        params = {id: game_1.id}
 
         require "pry"; binding.pry
       end
