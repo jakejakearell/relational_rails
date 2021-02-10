@@ -8,7 +8,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @game_players = Game.number_of_players
+    @game_players = Game.number_of_players(@game[:id])
   end
 
   def show_child
