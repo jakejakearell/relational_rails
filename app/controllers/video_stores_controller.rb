@@ -8,6 +8,7 @@ class VideoStoresController < ApplicationController
 
   def show
     @video_store = VideoStore.find(params[:id])
+    @video_store_movies = VideoStore.number_of_movies(@video_store[:id])
   end
 
   def show_child
