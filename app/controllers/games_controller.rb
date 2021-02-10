@@ -20,7 +20,12 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @player_weight = Player.weight?(params)
     render :show_child
-    # redirect_to "/games/#{@player_weight[0].game_id}/players"
+  end
+
+  def order
+    @game = Game.find(params[:id])
+    @player_weight = Player.alphabetize(params)
+    render :show_child
   end
 
   def create
