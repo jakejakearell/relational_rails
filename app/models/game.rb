@@ -5,7 +5,7 @@ class Game < ApplicationRecord
     Game.order(created_at: :desc)
   end
 
-  def self.number_of_players
-    Game.joins("INNER JOIN players ON players.game_id = games.id").length
+  def self.number_of_players(game_id)
+    Game.joins("INNER JOIN players ON players.game_id = games.id").where("games.id = ?", game_id).count
   end
 end
