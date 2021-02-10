@@ -7,6 +7,7 @@
 
 <% @games.each do |game| %>
   <h3><a href="/games/<%=game.id%>"> <%= game.stadium_name %> </a></h3>
+  <a href="/games/<%= game.id %>/edit" > update game</a>
 <% end %>
 
 <a href="/games/new" >new game</a>
