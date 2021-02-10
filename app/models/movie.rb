@@ -4,4 +4,8 @@ class Movie < ApplicationRecord
   def self.available?(params)
     Movie.where("video_store_id = ? AND available = ?", params[:id], true)
   end
+
+  def self.year?(params)
+    Movie.where("video_store_id = ? AND year_filmed > ?", params[:id], params[:query])
+  end
 end
