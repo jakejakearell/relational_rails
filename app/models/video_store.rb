@@ -1,5 +1,6 @@
 class VideoStore < ApplicationRecord
-  has_many :movies
+
+  has_many :movies, :dependent => :destroy
 
   def self.order_by_created_date
     VideoStore.order(created_at: :desc)

@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  has_many :players
+  has_many :players, :dependent => :destroy
 
   def self.order_by_created_date
     Game.order(created_at: :desc)

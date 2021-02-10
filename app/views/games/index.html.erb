@@ -8,6 +8,7 @@
 <% @games.each do |game| %>
   <h3><a href="/games/<%=game.id%>"> <%= game.stadium_name %> </a></h3>
   <a href="/games/<%= game.id %>/edit" > update game</a>
+  <a data-confirm="Are you sure?" data-method="delete" href="/games/<%=game.id%>" rel="nofollow">Delete</a>
 <% end %>
 
 <a href="/games/new" >new game</a>
