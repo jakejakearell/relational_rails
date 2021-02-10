@@ -149,4 +149,16 @@ RSpec.describe "As a vistor" do
       expect(current_path).to eq("/games/#{game_1.id}/players")
     end
   end
+
+  describe "I visit the `players` index page" do
+    it "has a link to edit that child's info" do
+      game_1 = Game.create!(televised: false,
+        stadium_name: "Wriggley",
+        attendance: 20000)
+      player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
+      visit "/players"
+      click_link 'edit player'
+      expect(current_path).to eq("/players/#{player_1.id}/edit")
+    end
+  end
 end
