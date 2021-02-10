@@ -12,8 +12,8 @@ class VideoStoresController < ApplicationController
   end
 
   def show_child
-    video_stores = VideoStore.find(params[:id])
-    @store_movies = video_stores.movies
+    @video_store = VideoStore.find(params[:id])
+    @store_movies = Movie.available?(@video_store)
   end
 
   def create
