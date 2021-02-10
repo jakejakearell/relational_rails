@@ -25,8 +25,8 @@ RSpec.describe "As a vistor" do
     end
   end
 
-  describe "I visit '/parents/:id'" do
-    it "displays link to edit story" do
+  describe "I visit '/games/'" do
+    it "displays link to edit game" do
       game_1 = Game.create!(televised: false,
         stadium_name: "Wriggley",
         attendance: 20000)
@@ -38,6 +38,24 @@ RSpec.describe "As a vistor" do
 
       expect(page).to have_link 'update game', href: "/games/#{game_1.id}/edit"
       expect(page).to have_link 'update game', href: "/games/#{game_2.id}/edit"
+    end
+  end
+
+  describe "I visit '/games/'" do
+    it "displays link to delete game" do
+      game_1 = Game.create!(televised: false,
+        stadium_name: "Wriggley",
+        attendance: 20000)
+
+      visit '/games'
+
+      expect(page).to have_link 'Delete', href: "/games/#{game_1.id}"
+
+      click_link 'Delete'
+
+      expect(current_path).to eq("/games/")
+
+      expect(page).to_not have_content(game_1.stadium_name)
     end
   end
 end
