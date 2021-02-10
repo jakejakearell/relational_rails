@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/games/:id/players/new', to: "players#new"
   post 'games/:id/players/new', to: "players#create"
   get '/games/:id/players', to: "games#show_child"
+  post '/games/:id/players/new_view', to: "games#new_page"
 
 
   get '/video_stores/:id/movies/new', to: "movies#new"

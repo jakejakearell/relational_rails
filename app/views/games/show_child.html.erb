@@ -1,7 +1,21 @@
-<% @game_players.each do |player| %>
-  <h3><%= player.position %></h3>
-  <h3><%= player.weight %></h3>
-  <h3><%= player.injured %></h3>
+<% if @player_weight.nil? %>
+  <% @game_players.each do |player| %>
+    <h3><%= player.position %></h3>
+    <h3><%= player.weight %></h3>
+    <h3><%= player.injured %></h3>
+  <% end %>
+<% else %>
+  <% @player_weight.each do |player| %>
+    <h3><%= player.position %></h3>
+    <h3><%= player.weight %></h3>
+    <h3><%= player.injured %></h3>
+  <% end %>
 <% end %>
 
-<a href="/games/<%=@game_players[0].game_id%>/players/new" >new player</a>
+<a href="/games/<%=@game.id%>/players/new" >new player</a>
+
+<%= form_with url: "/games/#{@game.id}/players/new_view", method: :post, local: true do |form| %>
+  <%= form.label :query, "Player weight:" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Search" %>
+<% end %>

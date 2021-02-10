@@ -4,4 +4,8 @@ class Player < ApplicationRecord
   def self.injured?(params)
     Player.where("game_id = ? AND injured = ?", params[:id], true)
   end
+
+  def self.weight?(params)
+    Player.where("game_id = ? AND weight > ?", params[:id], params[:query] )
+  end
 end
