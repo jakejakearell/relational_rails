@@ -38,8 +38,6 @@ describe Game, type: :model do
         player_2 = game_1.players.create!(position: "RB", weight: 180, injured: true)
         player_3 = game_2.players.create!(position: "DB", weight: 195, injured: true)
 
-        require "pry"; binding.pry
-
         game_id = game_1[:id]
 
         expect(Game.number_of_players(game_id)).to eq(2)
@@ -47,8 +45,3 @@ describe Game, type: :model do
     end
   end
 end
-
-
-# def self.number_of_players(game_id)
-#   Game.joins("INNER JOIN players ON players.game_id = games.id").where("games.id = ?", game_id).count
-# end
