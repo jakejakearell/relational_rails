@@ -24,7 +24,7 @@ class VideoStoresController < ApplicationController
 
   def order
     @video_store = VideoStore.find(params[:id])
-    @movie_alpahbetize = Movie.alphabetize(params)
+    @store_movies = Movie.alphabetize(params)
     render :show_child
   end
 
