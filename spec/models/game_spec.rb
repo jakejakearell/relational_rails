@@ -26,5 +26,18 @@ describe Game, type: :model do
         expect(Game.order_by_created_date).to eq(expected)
       end
     end
+
+    describe '#number_of_players' do
+      it "returns the number of players in the game's show page" do
+        game_1 = Game.create!(televised: false,
+                              stadium_name: "Wriggley",
+                              attendance: 20000)
+        game_2 = Game.create!(televised: false, stadium_name: "Coors", attendance: 25000)
+
+        player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
+        player_2 = game_1.players.create!(position: "RB", weight: 180, injured: true)
+        player_3 = game_2.players.create!(position: "DB", weight: 195, injured: true)
+      end
+    end
   end
 end
