@@ -16,6 +16,12 @@ class VideoStoresController < ApplicationController
     @store_movies = Movie.available?(@video_store)
   end
 
+  def new_page
+    @video_store = VideoStore.find(params[:id])
+    @movie_year = Movie.year?(params)
+    render :show_child
+  end
+
   def create
     video_store = VideoStore.new({
       name: params[:video_store][:name],
