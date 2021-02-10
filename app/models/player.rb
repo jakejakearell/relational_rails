@@ -12,5 +12,4 @@ class Player < ApplicationRecord
   def self.alphabetize(params)
     Player.order(:position).where("game_id = ? AND injured = ?", params[:id], true)
   end
-
 end
