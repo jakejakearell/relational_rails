@@ -22,6 +22,12 @@ class VideoStoresController < ApplicationController
     render :show_child
   end
 
+  def order
+    @video_store = VideoStore.find(params[:id])
+    @movie_alpahbetize = Movie.alphabetize(params)
+    render :show_child
+  end
+
   def create
     video_store = VideoStore.new({
       name: params[:video_store][:name],
