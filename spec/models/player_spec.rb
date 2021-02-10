@@ -17,11 +17,14 @@ describe Player, type: :model do
 
         player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
         player_2 = game_1.players.create!(position: "RB", weight: 180, injured: false)
-        player_3 = game_2.players.create!(position: "DB", weight: 195, injured: true)
+        player_3 = game_1.players.create!(position: "DB", weight: 195, injured: true)
+        player_4 = game_2.players.create!(position: "DB", weight: 195, injured: true)
 
         params = {id: game_1.id}
 
-        require "pry"; binding.pry
+        expected = [player_1, player_3]
+
+        expect(Player.injured?(params)).to eq(expected)
       end
     end
   end
@@ -35,4 +38,8 @@ end
 #
 # def self.weight?(params)
 #   Player.where("game_id = ? AND weight > ?", params[:id], params[:query] )
+# end
+#
+# def self.alphabetize(params)
+#   Player.order(:position).where("game_id = ? AND injured = ?", params[:id], true)
 # end
