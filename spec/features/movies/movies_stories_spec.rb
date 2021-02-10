@@ -45,7 +45,7 @@ RSpec.describe "As a vistor" do
                             flagship_store: false)
 
       movie_1 = video_store_1.movies.create!(name:"Rent", available: true, year_filmed: 2001)
-      movie_2 = video_store_1.movies.create!(name:"Rambo", available: false, year_filmed: 1989)
+      movie_2 = video_store_1.movies.create!(name:"Rambo", available: true, year_filmed: 1989)
       movie_3 = video_store_2.movies.create!(name:"Alien", available: false, year_filmed: 1988)
       movie_4 = video_store_2.movies.create!(name:"Predator", available: true, year_filmed: 1990)
 
@@ -161,13 +161,13 @@ RSpec.describe "As a vistor" do
       expect(current_path).to eq("/video_stores/#{video_store.id}/movies/new")
 
       fill_in 'movie[name]', with: 'Die Hard'
-      fill_in 'movie[available]', with: false
+      fill_in 'movie[available]', with: true
       fill_in 'movie[year_filmed]', with: 1990
 
       click_button
 
       expect(page).to have_content("Die Hard")
-      expect(page).to have_content(false)
+      expect(page).to have_content(true)
       expect(page).to have_content(1990)
 
       expect(current_path).to eq("/video_stores/#{video_store.id}/movies")
