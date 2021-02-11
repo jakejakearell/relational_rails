@@ -82,7 +82,7 @@ RSpec.describe "As a vistor" do
 
       expect(page).to have_link 'update player', href: "/players/#{player_1.id}/edit"
 
-      click_link
+      click_link 'update player'
 
       expect(current_path).to eq("/players/#{player_1.id}/edit")
 

@@ -38,7 +38,7 @@ RSpec.describe "As a vistor" do
 
       expect(page).to have_link 'new game', href: "/games/new"
 
-      click_link
+      click_link 'new game'
 
       expect(current_path).to eq('/games/new')
 
@@ -98,11 +98,11 @@ RSpec.describe "As a vistor" do
     end
   end
 
-  desribe "When I visit any page on the site" do
-    it "shows a link at the top of the page that takes me to the game page" do
-      
-    end
-  end
+  # desribe "When I visit any page on the site" do
+  #   it "shows a link at the top of the page that takes me to the game page" do
+  #
+  #   end
+  # end
 
   describe "When I visit a games show page" do
     it "shows a link that takes me to players" do
