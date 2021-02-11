@@ -64,7 +64,7 @@ RSpec.describe "As a vistor" do
       visit "/games/#{game_1.id}"
       expect(page).to have_link 'update game', href: "/games/#{game_1.id}/edit"
 
-      click_link
+      click_link 'update game'
 
       expect(current_path).to eq("/games/#{game_1.id}/edit")
 
@@ -95,6 +95,22 @@ RSpec.describe "As a vistor" do
 
       expect(page).to_not have_content(game.stadium_name)
       expect(current_path).to eq('/games/')
+    end
+  end
+
+  describe "When I visit a games show page" do
+    it "shows a link that takes me to players" do
+      game = Game.create!(televised: false,
+        stadium_name: "Wriggley",
+        attendance: 20000)
+
+      visit "/games/#{game.id}"
+
+      expect(page).to have_link 'players', href: "/games/#{game.id}/players"
+
+      click_link 'players'
+
+      expect(current_path).to eq("/games/#{game.id}/players")
     end
   end
 end
