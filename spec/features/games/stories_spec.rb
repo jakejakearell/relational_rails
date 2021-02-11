@@ -99,66 +99,22 @@ RSpec.describe "As a vistor" do
   end
 
   describe "When I visit any page on the site" do
-    game = Game.create!(televised: false,
-      stadium_name: "Wriggley",
-      attendance: 20000)
+    it "shows a link at the top of the page that takes me to the games and video stores page" do
+      visit "/video_stores"
+      expect(page).to have_link 'games homepage', href: "/games"
+      visit "/games"
 
-    video_store = VideoStore.create!(name: "Video 1",
-      rank: 1,
-      flagship_store: true)
-
-    player = game.players.create!(position: "QB", weight: 210, injured: true)
-
-    movie = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
-
-    sites = ["/", "/games", "/video_stores", "/games/new", '/video_stores',
-            '/video_stores/new', "/games/#{game.id}", "/games/#{game.id}/edit",
-            "/video_stores/#{video_store.id}", "/video_stores/#{video_store.id}/edit",
-            '/players', '/movies', "/games/#{game.id}/players",
-            "/games/#{game.id}/players/new", "/games/#{game.id}/players/order",
-            "/video_stores/#{video_store.id}/movies", "/video_stores/#{video_store.id}/movies/order",
-            "/video_stores/#{video_store.id}/movies/new", "/players/#{player.id}",
-            "/movies/#{movie.id}", "/players/#{player.id}/edit", "/movies/#{movie.id}/edit"]
-
-    sites.each do |site|
-      it "shows a link at the top of the page that takes me to the games and video stores page" do
-        visit site
-
-        expect(page).to have_link 'games homepage', href: "/games"
-        expect(page).to have_link 'video stores homepage', href: "/video_stores"
-      end
+      expect(page).to have_link 'video stores homepage', href: "/video_stores"
     end
   end
 
   describe "When I visit any page on the site" do
-    game = Game.create!(televised: false,
-      stadium_name: "Wriggley",
-      attendance: 20000)
+    it "shows a link at the top of the page that takes me to the games and video stores page" do
+      visit "/video_stores"
+      expect(page).to have_link 'players homepage', href: "/players"
+      visit "/games"
 
-    video_store = VideoStore.create!(name: "Video 1",
-      rank: 1,
-      flagship_store: true)
-
-    player = game.players.create!(position: "QB", weight: 210, injured: true)
-
-    movie = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
-
-    sites = ["/", "/games", "/video_stores", "/games/new", '/video_stores',
-            '/video_stores/new', "/games/#{game.id}", "/games/#{game.id}/edit",
-            "/video_stores/#{video_store.id}", "/video_stores/#{video_store.id}/edit",
-            '/players', '/movies', "/games/#{game.id}/players",
-            "/games/#{game.id}/players/new", "/games/#{game.id}/players/order",
-            "/video_stores/#{video_store.id}/movies", "/video_stores/#{video_store.id}/movies/order",
-            "/video_stores/#{video_store.id}/movies/new", "/players/#{player.id}",
-            "/movies/#{movie.id}", "/players/#{player.id}/edit", "/movies/#{movie.id}/edit"]
-
-    sites.each do |site|
-      it "shows a link at the top of the page that takes me to the games and video stores page" do
-        visit site
-
-        expect(page).to have_link 'players homepage', href: "/players"
-        expect(page).to have_link 'movies homepage', href: "/movies"
-      end
+      expect(page).to have_link 'movies homepage', href: "/movies"
     end
   end
 

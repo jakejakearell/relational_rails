@@ -233,7 +233,7 @@ RSpec.describe "As a vistor" do
 
       visit "/movies"
 
-      click_link 'edit movie'
+      click_link 'edit movie', href: "/movies/#{movie.id}/edit"
 
       expect(current_path).to eq("/movies/#{movie.id}/edit")
     end
