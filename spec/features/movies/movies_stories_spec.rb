@@ -138,11 +138,6 @@ RSpec.describe "As a vistor" do
 
   describe "I visit a video store movies index page" do
     it "then I see a link to create a new movie" do
-      # game_1 = Game.create!(televised: false,
-      #   stadium_name: "Wriggley",
-      #   attendance: 20000)
-      # player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
-      # player_2 = game_1.players.create!(position: "RB", weight: 180, injured: true)
 
       video_store = VideoStore.create!(name: "Video 1",
                             rank: 1,
@@ -198,7 +193,7 @@ RSpec.describe "As a vistor" do
   end
 
   describe "I visit '/video_stores/'" do
-    it "displays link to edit game" do
+    it "displays link to edit store" do
       video_store = VideoStore.create!(name: "Video 1",
                             rank: 1,
                             flagship_store: true)
@@ -227,4 +222,76 @@ RSpec.describe "As a vistor" do
     end
   end
 
+
+  describe "I visit the `movies` index page" do
+    it "has a link to edit that movies's info" do
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
+
+      movie = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
+
+      visit "/movies"
+
+      click_link 'edit movie'
+
+      expect(current_path).to eq("/movies/#{movie.id}/edit")
+    end
+  end
+
+  describe "I visit the `store movies` index page" do
+    it "has a link to edit that child's info" do
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
+
+      movie = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
+
+      visit "/video_stores/#{video_store.id}/movies"
+
+      click_link 'edit movie'
+
+      expect(current_path).to eq("/movies/#{movie.id}/edit")
+    end
+  end
+
+  describe "I visit the `movies` index page" do
+    it "has a link to delete that child's info" do
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
+
+      movie = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
+
+      visit '/movies'
+
+      expect(page).to have_link 'Delete', href: "/movies/#{movie.id}"
+
+      click_link 'Delete', href: "/movies/#{movie.id}"
+
+      expect(current_path).to eq("/movies/")
+
+      expect(page).to_not have_content(movie.name)
+    end
+  end
+
+  describe "I visit the `movies` index page" do
+    it "has a link to delete that child's info" do
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
+
+      movie = video_store.movies.create!(name:"Rent", available: true, year_filmed: 2001)
+
+      visit "video_stores/#{video_store.id}/movies"
+
+      expect(page).to have_link 'Delete', href: "/movies/#{movie.id}"
+
+      click_link 'Delete', href: "/movies/#{movie.id}"
+
+      expect(current_path).to eq("/movies/")
+
+      expect(page).to_not have_content(movie.name)
+    end
+  end
 end
