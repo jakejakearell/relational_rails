@@ -10,7 +10,7 @@ Things you may want to cover:
 
 * Database creation
 
-![schema](/images/Screen-Shot-2021-02-10-at-9.29.35-PM.png)
+![schema](/images/Screen%20Shot%202021-02-10%20at%209.29.35%20PM.png
 
 * Database initialization
 
