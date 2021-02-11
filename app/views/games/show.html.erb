@@ -6,7 +6,9 @@
   <p><%= @game.created_at %></p>
   <p><%= @game.updated_at %></p>
 
-  <p>number of players: <%= @game_players %></p> 
+  <p>number of players: <%= @game_players %></p>
+
+  <a href="/games/<%=@game.id%>/players" >players</a>
 
   <a href="/games/<%= @game.id %>/edit" > update game</a>
   <br>
