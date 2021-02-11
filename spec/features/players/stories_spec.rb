@@ -157,7 +157,8 @@ RSpec.describe "As a vistor" do
         attendance: 20000)
       player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
       visit "/players"
-      click_link 'edit player'
+      click_link 'edit player', href: "/players/#{player_1.id}/edit"
+      
       expect(current_path).to eq("/players/#{player_1.id}/edit")
     end
   end
