@@ -2,4 +2,6 @@
   <h3><%= player.position %></h3>
   <h3><%= player.injured %></h3>
   <h3><%= player.weight %></h3>
+  <a href="/players/<%= player.id %>/edit" > edit player</a>
+  <a data-method="delete" href="/players/<%=player.id%>">Delete</a>
 <% end %>
