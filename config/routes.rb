@@ -29,10 +29,11 @@ Rails.application.routes.draw do
   post '/games/:id/players/new_view', to: "games#new_page"
   get '/games/:id/players/order', to: "games#order"
 
-
   get '/video_stores/:id/movies/new', to: "movies#new"
   post 'video_stores/:id/movies/new', to: "movies#create"
   get '/video_stores/:id/movies', to: "video_stores#show_child"
+  post '/video_stores/:id/movies/new_view', to: "video_stores#new_page"
+  get '/video_stores/:id/movies/order', to: "video_stores#order"
 
   get '/players/:id', to: "players#show"
   get '/movies/:id', to: "movies#show"

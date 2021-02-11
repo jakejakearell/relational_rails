@@ -1,6 +1,6 @@
 class VideoStoresController < ApplicationController
   def index
-    @video_stores = VideoStore.all
+    @video_stores = VideoStore.order_by_created_date
   end
 
   def new
@@ -8,11 +8,24 @@ class VideoStoresController < ApplicationController
 
   def show
     @video_store = VideoStore.find(params[:id])
+    @video_store_movies = VideoStore.number_of_movies(@video_store[:id])
   end
 
   def show_child
-    video_stores = VideoStore.find(params[:id])
-    @store_movies = video_stores.movies
+    @video_store = VideoStore.find(params[:id])
+    @store_movies = Movie.available?(@video_store)
+  end
+
+  def new_page
+    @video_store = VideoStore.find(params[:id])
+    @movie_year = Movie.year?(params)
+    render :show_child
+  end
+
+  def order
+    @video_store = VideoStore.find(params[:id])
+    @store_movies = Movie.alphabetize(params)
+    render :show_child
   end
 
   def create

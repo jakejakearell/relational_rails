@@ -51,7 +51,7 @@ RSpec.describe "As a vistor" do
 
       expect(page).to have_link 'Delete', href: "/games/#{game_1.id}"
 
-      click_link 'Delete'
+      click_link 'Delete', href: "/games/#{game_1.id}"
 
       expect(current_path).to eq("/games/")
 
