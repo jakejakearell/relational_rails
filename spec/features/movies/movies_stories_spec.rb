@@ -209,21 +209,21 @@ RSpec.describe "As a vistor" do
     end
   end
 
-  describe "I visit '/games/'" do
-    it "displays link to delete game" do
-      game_1 = Game.create!(televised: false,
-        stadium_name: "Wriggley",
-        attendance: 20000)
+  describe "I visit '/video_stores/'" do
+    it "displays link to delete store" do
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
 
-      visit '/games'
+      visit '/video_stores'
 
-      expect(page).to have_link 'Delete', href: "/games/#{game_1.id}"
+      expect(page).to have_link 'Delete', href: "/video_stores/#{video_store.id}"
 
-      click_link 'Delete', href: "/games/#{game_1.id}"
+      click_link 'Delete', href: "/video_stores/#{video_store.id}"
 
-      expect(current_path).to eq("/games/")
+      expect(current_path).to eq("/video_stores/")
 
-      expect(page).to_not have_content(game_1.stadium_name)
+      expect(page).to_not have_content(video_store.name)
     end
   end
 
