@@ -173,4 +173,58 @@ RSpec.describe "As a vistor" do
       expect(current_path).to eq("/video_stores/#{video_store.id}/movies")
     end
   end
+
+  describe "I visit a store's movie page" do
+    it "has a form to filter movies by year" do
+
+      video_store_1 = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
+
+      movie_1 = video_store_1.movies.create!(name:"Rent", available: true, year_filmed: 2001)
+      movie_2 = video_store_1.movies.create!(name:"Rambo", available: false, year_filmed: 1989)
+      movie_3 = video_store_1.movies.create!(name:"Alien", available: false, year_filmed: 1988)
+      movie_4 = video_store_1.movies.create!(name:"Predator", available: true, year_filmed: 1990)
+
+
+      visit "video_stores/#{video_store_1.id}/movies"
+
+      fill_in 'query', with: '2000'
+
+      click_button
+
+      expect(page).to_not have_content(movie_2.name)
+    end
+  end
+
+  describe "I visit '/video_stores/'" do
+    it "displays link to edit game" do
+      video_store = VideoStore.create!(name: "Video 1",
+                            rank: 1,
+                            flagship_store: true)
+
+      visit '/video_stores'
+
+      expect(page).to have_link 'update store', href: "/video_stores/#{video_store.id}/edit"
+    end
+  end
+
+  describe "I visit '/games/'" do
+    it "displays link to delete game" do
+      game_1 = Game.create!(televised: false,
+        stadium_name: "Wriggley",
+        attendance: 20000)
+
+      visit '/games'
+
+      expect(page).to have_link 'Delete', href: "/games/#{game_1.id}"
+
+      click_link 'Delete', href: "/games/#{game_1.id}"
+
+      expect(current_path).to eq("/games/")
+
+      expect(page).to_not have_content(game_1.stadium_name)
+    end
+  end
+
 end

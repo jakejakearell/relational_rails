@@ -7,6 +7,7 @@
     <a data-method="delete" href="/players/<%=player.id%>">Delete</a>
   <% end %>
 <% else %>
+<div class="players">
   <% @player_weight.each do |player| %>
     <h3><%= player.position %></h3>
     <h3><%= player.weight %></h3>
@@ -14,8 +15,8 @@
     <a href="/players/<%= player.id %>/edit" > edit player</a>
     <a data-method="delete" href="/players/<%=player.id%>">Delete</a>
   <% end %>
+</div>
 <% end %>
-
 <a href="/games/<%=@game.id%>/players/new" >new player</a>
 
 <%= form_with url: "/games/#{@game.id}/players/new_view", method: :post, local: true do |form| %>
