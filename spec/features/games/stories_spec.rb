@@ -38,7 +38,7 @@ RSpec.describe "As a vistor" do
 
       expect(page).to have_link 'new game', href: "/games/new"
 
-      click_link
+      click_link 'new game'
 
       expect(current_path).to eq('/games/new')
 

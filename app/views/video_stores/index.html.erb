@@ -7,6 +7,8 @@
 
 <% @video_stores.each do |video_store| %>
   <h3><a href="/video_stores/<%=video_store.id%>"> <%= video_store.name %> </h3>
+      <a href="/video_stores/<%= video_store.id %>/edit" > update store</a>
+      <a data-method="delete" href="/video_stores/<%=video_store.id%>">Delete</a>
 <% end %>
 
 <a href="/video_stores/new" > new video store</a>

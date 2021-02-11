@@ -3,12 +3,16 @@
     <h3><%= movie.name %></h3>
     <h3><%= movie.available %></h3>
     <h3><%= movie.year_filmed %></h3>
+    <a href="/movies/<%= movie.id %>/edit" > edit movie</a>
+    <a data-method="delete" href="/movies/<%=movie.id%>">Delete</a>
   <% end %>
 <% else %>
   <% @movie_year.each do |movie| %>
     <h3><%= movie.name %></h3>
     <h3><%= movie.available %></h3>
     <h3><%= movie.year_filmed %></h3>
+    <a href="/movies/<%= movie.id %>/edit" > edit movie</a>
+    <a data-method="delete" href="/movies/<%=movie.id%>">Delete</a>
   <% end %>
 <% end %>
 

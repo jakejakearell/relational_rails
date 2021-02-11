@@ -82,7 +82,7 @@ RSpec.describe "As a vistor" do
 
       expect(page).to have_link 'update player', href: "/players/#{player_1.id}/edit"
 
-      click_link
+      click_link 'update player'
 
       expect(current_path).to eq("/players/#{player_1.id}/edit")
 
@@ -211,4 +211,44 @@ RSpec.describe "As a vistor" do
       expect(page).to_not have_content(game_1.stadium_name)
     end
   end
+
+  describe "I visit a game's player page" do
+    it "has a form to filter players by weight" do
+      game_1 = Game.create!(televised: false,
+                            stadium_name: "Wriggley",
+                            attendance: 20000)
+
+      player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
+      player_2 = game_1.players.create!(position: "RB", weight: 180, injured: true)
+      player_3 = game_1.players.create!(position: "DB", weight: 195, injured: true)
+
+      visit "games/#{game_1.id}/players"
+
+      fill_in 'query', with: '185'
+
+      click_button
+
+      expect(page).to_not have_content(player_2.position)
+    end
+  end
+
+  describe "I visit a game's player page" do
+    it "has a link to alphabetize players" do
+      game_1 = Game.create!(televised: false,
+                            stadium_name: "Wriggley",
+                            attendance: 20000)
+
+      player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
+      player_2 = game_1.players.create!(position: "RB", weight: 180, injured: true)
+      player_3 = game_1.players.create!(position: "DB", weight: 195, injured: true)
+
+      visit "games/#{game_1.id}/players"
+
+
+      click_link 'alphabetize players'
+
+
+    end
+  end
+
 end
