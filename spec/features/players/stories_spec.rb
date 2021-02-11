@@ -173,4 +173,23 @@ RSpec.describe "As a vistor" do
       expect(current_path).to eq("/players/#{player_1.id}/edit")
     end
   end
+
+  describe "I visit the `players` index page" do
+    it "has a link to delete that child's info" do
+      game_1 = Game.create!(televised: false,
+        stadium_name: "Wriggley",
+        attendance: 20000)
+      player_1 = game_1.players.create!(position: "QB", weight: 210, injured: true)
+
+      visit '/players'
+
+      expect(page).to have_link 'Delete', href: "/players/#{player_1.id}"
+
+      click_link 'Delete'
+
+      expect(current_path).to eq("/players/")
+
+      expect(page).to_not have_content(game_1.stadium_name)
+    end
+  end
 end
